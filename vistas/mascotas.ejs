@@ -1,0 +1,48 @@
+<%- include("plantillas/cabecera", {tituloweb: "Pagina de Inicio"})%> 
+
+<%- include("plantillas/menu")%> 
+
+
+<!--TABLA-->
+  <div class="container">
+
+      <!--BOTON-->
+      <h1>CRUD MONGO</h1>
+      <a class=" btn btn-success btn-block my-4 align-content-center" 
+            href="/mascotas/crear">
+        Crear Mascota</a>
+      <!--BOTON-->  
+    
+    <table class="table">
+      <thead>
+
+        <tr>
+          <th scope="col">Identificador</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Accion</th>
+        </tr>
+
+      </thead>
+      <tbody>
+
+        <% if (arrayMascotas.length > 0) { %>
+          <% arrayMascotas.forEach(mascotas => { %> 
+
+            <tr>
+              <th scope="row"><%= mascotas.id %></th>
+              <td><%= mascotas.nombre %></td>
+              <td><%= mascotas.descripcion %></td>
+              <td>
+                <a href="/mascotas/<%=mascotas.id%> " class="btb btn-warning btn-sm">Editar</a>
+              </td>
+            </tr>
+
+          <% }) %>
+        <% } %>
+
+      </tbody>
+    </table>
+  </div>
+
+<%- include("plantillas/footer")%>  
