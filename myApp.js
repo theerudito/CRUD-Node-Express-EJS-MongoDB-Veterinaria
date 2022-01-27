@@ -1,34 +1,15 @@
 const express = require('express'); // express
-
+const conexion = require("./database/db")
 const bodyParser = require('body-parser'); // body parser
 const app = express();
 
 
- //VARIABLES DE ENTORNO
-require('dotenv').config()
-
+ 
 // PARSE BODY
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
-
-
-
-
-const port = process.env.PORT || 3000; // el puerto de manera local el debes saber q el hosting proporciona el puerto
-
-// CONEXION DE BASES DE DATOS
-const mongoose = require('mongoose');
-
-// DIRECCION DE BASE DE DATOS
-const uri =`mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@jorge.mxijl.mongodb.net/${process.env.BASEDEDATOS}?retryWrites=true&w=majority`;
-
-
-// mongodb//localhost:27017/test' coneccion de manera local usamos asi
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(()=> console.log('Conectad a la Base de Datos de Mongo')) 
-  .catch(e => console.log('error de conexión', e))
   
   
 
@@ -56,11 +37,11 @@ app.use((req, res, next) => {
   })
 });
 
-// PUERTO EN ESCUCHA
-app.listen(port, () =>{
-  console.log("Servidor a su Servicio", port)
-})
 
+
+
+const port = process.env.PORT || 2000
+app.listen(port, () => console.log("SERVIDOR A SU SERVICIO EN EL PUERTO", port))
 
 
 
